@@ -22,10 +22,9 @@ public class ConnectionUtil {
     public void createTable(Connection conn, String recovery) {
         Statement statement;
         try {
-            String query = "create table if not exists" + recovery + "(id SERIAL PRIMARY KEY NOT NULL, brand varchar(50), model varchar(50), price float);";
+            String query = "create table if not exists " + recovery + " (id SERIAL PRIMARY KEY NOT NULL, brand varchar(50), model varchar(50), price float);";
             statement = conn.createStatement();
             statement.executeUpdate(query);
-
         } catch (Exception e) {
             System.out.println("entering db information");
             System.out.println("please enter your social security number **1 to exit program**");
@@ -35,7 +34,7 @@ public class ConnectionUtil {
     public void insert_row(Connection conn, String brand, String model, double price) {
         Statement statement;
         try {
-            String query = "INSERT INTO laptops(brand, model, price) VALUES (" + brand + "," + model + "," + price +");";
+            String query = "INSERT INTO laptops (brand, model, price) VALUES ('" + brand + "', '" + model + "', " + price +")";
             statement = conn.createStatement();
             statement.executeUpdate(query);
             System.out.println("row inserted");
@@ -66,6 +65,19 @@ public class ConnectionUtil {
             System.out.println(e);
         }
     }
+
+    public void update(Connection conn, int idm, String brand, String model, double price) {
+        Statement statement;
+        try {
+            String query = "UPDATE laptops SET brand = '" + brand + "', model = '" + model + "', price = " + price + " WHERE id=" + idm + ";";
+            statement = conn.createStatement();
+            statement.executeUpdate(query);
+            System.out.println("laptop with id " +idm+" updated" + "\n");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
     public void delete(Connection conn, int idm) {
         Statement statement;
         try {

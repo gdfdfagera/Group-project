@@ -29,4 +29,18 @@ public class Menu {
         lap.setPrice(dbl);
         return lap;
     }
+
+    static int updateLaptop(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Write the ID of the laptop you would like to change");
+        int n = sc.nextInt();
+        return n;
+    }
+
+    static int deleteLaptop(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Write the ID of the laptop you would like to delete");
+        int n = sc.nextInt();
+        return n;
+    }
 }
